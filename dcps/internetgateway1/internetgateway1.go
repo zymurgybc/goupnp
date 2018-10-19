@@ -2,13 +2,15 @@
 //
 // This DCP is documented in detail at: http://upnp.org/specs/gw/UPnP-gw-InternetGatewayDevice-v1-Device.pdf
 //
-// Typically, use one of the New* functions to discover services on the local
-// network.
+// Typically, use one of the New* functions to create clients for services.
 package internetgateway1
 
-// Generated file - do not edit by hand. See README.md
+// ***********************************************************
+// GENERATED FILE - DO NOT EDIT BY HAND. See README.md
+// ***********************************************************
 
 import (
+	"net/url"
 	"time"
 
 	"github.com/huin/goupnp"
@@ -56,18 +58,48 @@ func NewLANHostConfigManagement1Clients() (clients []*LANHostConfigManagement1, 
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_LANHostConfigManagement_1); err != nil {
 		return
 	}
-	clients = make([]*LANHostConfigManagement1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &LANHostConfigManagement1{genericClients[i]}
-	}
+	clients = newLANHostConfigManagement1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewLANHostConfigManagement1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewDHCPServerConfigurable:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewLANHostConfigManagement1ClientsByURL(loc *url.URL) ([]*LANHostConfigManagement1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_LANHostConfigManagement_1)
+	if err != nil {
+		return nil, err
+	}
+	return newLANHostConfigManagement1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewLANHostConfigManagement1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewLANHostConfigManagement1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*LANHostConfigManagement1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_LANHostConfigManagement_1)
+	if err != nil {
+		return nil, err
+	}
+	return newLANHostConfigManagement1ClientsFromGenericClients(genericClients), nil
+}
+
+func newLANHostConfigManagement1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*LANHostConfigManagement1 {
+	clients := make([]*LANHostConfigManagement1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &LANHostConfigManagement1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *LANHostConfigManagement1) SetDHCPServerConfigurable(NewDHCPServerConfigurable bool) (err error) {
 	// Request structure.
 	request := &struct {
@@ -94,11 +126,6 @@ func (client *LANHostConfigManagement1) SetDHCPServerConfigurable(NewDHCPServerC
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDHCPServerConfigurable:
 func (client *LANHostConfigManagement1) GetDHCPServerConfigurable() (NewDHCPServerConfigurable bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -125,11 +152,6 @@ func (client *LANHostConfigManagement1) GetDHCPServerConfigurable() (NewDHCPServ
 	return
 }
 
-// Arguments:
-//
-// * NewDHCPRelay:
-//
-//
 func (client *LANHostConfigManagement1) SetDHCPRelay(NewDHCPRelay bool) (err error) {
 	// Request structure.
 	request := &struct {
@@ -156,11 +178,6 @@ func (client *LANHostConfigManagement1) SetDHCPRelay(NewDHCPRelay bool) (err err
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDHCPRelay:
 func (client *LANHostConfigManagement1) GetDHCPRelay() (NewDHCPRelay bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -187,11 +204,6 @@ func (client *LANHostConfigManagement1) GetDHCPRelay() (NewDHCPRelay bool, err e
 	return
 }
 
-// Arguments:
-//
-// * NewSubnetMask:
-//
-//
 func (client *LANHostConfigManagement1) SetSubnetMask(NewSubnetMask string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -218,11 +230,6 @@ func (client *LANHostConfigManagement1) SetSubnetMask(NewSubnetMask string) (err
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewSubnetMask:
 func (client *LANHostConfigManagement1) GetSubnetMask() (NewSubnetMask string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -249,11 +256,6 @@ func (client *LANHostConfigManagement1) GetSubnetMask() (NewSubnetMask string, e
 	return
 }
 
-// Arguments:
-//
-// * NewIPRouters:
-//
-//
 func (client *LANHostConfigManagement1) SetIPRouter(NewIPRouters string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -280,11 +282,6 @@ func (client *LANHostConfigManagement1) SetIPRouter(NewIPRouters string) (err er
 	return
 }
 
-// Arguments:
-//
-// * NewIPRouters:
-//
-//
 func (client *LANHostConfigManagement1) DeleteIPRouter(NewIPRouters string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -311,11 +308,6 @@ func (client *LANHostConfigManagement1) DeleteIPRouter(NewIPRouters string) (err
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewIPRouters:
 func (client *LANHostConfigManagement1) GetIPRoutersList() (NewIPRouters string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -342,11 +334,6 @@ func (client *LANHostConfigManagement1) GetIPRoutersList() (NewIPRouters string,
 	return
 }
 
-// Arguments:
-//
-// * NewDomainName:
-//
-//
 func (client *LANHostConfigManagement1) SetDomainName(NewDomainName string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -373,11 +360,6 @@ func (client *LANHostConfigManagement1) SetDomainName(NewDomainName string) (err
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDomainName:
 func (client *LANHostConfigManagement1) GetDomainName() (NewDomainName string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -404,18 +386,10 @@ func (client *LANHostConfigManagement1) GetDomainName() (NewDomainName string, e
 	return
 }
 
-// Arguments:
-//
-// * NewMinAddress:
-//
-// * NewMaxAddress:
-//
-//
 func (client *LANHostConfigManagement1) SetAddressRange(NewMinAddress string, NewMaxAddress string) (err error) {
 	// Request structure.
 	request := &struct {
 		NewMinAddress string
-
 		NewMaxAddress string
 	}{}
 	// BEGIN Marshal arguments into request.
@@ -442,13 +416,6 @@ func (client *LANHostConfigManagement1) SetAddressRange(NewMinAddress string, Ne
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewMinAddress:
-//
-// * NewMaxAddress:
 func (client *LANHostConfigManagement1) GetAddressRange() (NewMinAddress string, NewMaxAddress string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -459,7 +426,6 @@ func (client *LANHostConfigManagement1) GetAddressRange() (NewMinAddress string,
 	// Response structure.
 	response := &struct {
 		NewMinAddress string
-
 		NewMaxAddress string
 	}{}
 
@@ -480,11 +446,6 @@ func (client *LANHostConfigManagement1) GetAddressRange() (NewMinAddress string,
 	return
 }
 
-// Arguments:
-//
-// * NewReservedAddresses:
-//
-//
 func (client *LANHostConfigManagement1) SetReservedAddress(NewReservedAddresses string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -511,11 +472,6 @@ func (client *LANHostConfigManagement1) SetReservedAddress(NewReservedAddresses 
 	return
 }
 
-// Arguments:
-//
-// * NewReservedAddresses:
-//
-//
 func (client *LANHostConfigManagement1) DeleteReservedAddress(NewReservedAddresses string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -542,11 +498,6 @@ func (client *LANHostConfigManagement1) DeleteReservedAddress(NewReservedAddress
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewReservedAddresses:
 func (client *LANHostConfigManagement1) GetReservedAddresses() (NewReservedAddresses string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -573,11 +524,6 @@ func (client *LANHostConfigManagement1) GetReservedAddresses() (NewReservedAddre
 	return
 }
 
-// Arguments:
-//
-// * NewDNSServers:
-//
-//
 func (client *LANHostConfigManagement1) SetDNSServer(NewDNSServers string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -604,11 +550,6 @@ func (client *LANHostConfigManagement1) SetDNSServer(NewDNSServers string) (err 
 	return
 }
 
-// Arguments:
-//
-// * NewDNSServers:
-//
-//
 func (client *LANHostConfigManagement1) DeleteDNSServer(NewDNSServers string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -635,11 +576,6 @@ func (client *LANHostConfigManagement1) DeleteDNSServer(NewDNSServers string) (e
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDNSServers:
 func (client *LANHostConfigManagement1) GetDNSServers() (NewDNSServers string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -684,18 +620,48 @@ func NewLayer3Forwarding1Clients() (clients []*Layer3Forwarding1, errors []error
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_Layer3Forwarding_1); err != nil {
 		return
 	}
-	clients = make([]*Layer3Forwarding1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &Layer3Forwarding1{genericClients[i]}
-	}
+	clients = newLayer3Forwarding1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewLayer3Forwarding1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewDefaultConnectionService:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewLayer3Forwarding1ClientsByURL(loc *url.URL) ([]*Layer3Forwarding1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_Layer3Forwarding_1)
+	if err != nil {
+		return nil, err
+	}
+	return newLayer3Forwarding1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewLayer3Forwarding1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewLayer3Forwarding1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*Layer3Forwarding1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_Layer3Forwarding_1)
+	if err != nil {
+		return nil, err
+	}
+	return newLayer3Forwarding1ClientsFromGenericClients(genericClients), nil
+}
+
+func newLayer3Forwarding1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*Layer3Forwarding1 {
+	clients := make([]*Layer3Forwarding1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &Layer3Forwarding1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *Layer3Forwarding1) SetDefaultConnectionService(NewDefaultConnectionService string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -722,11 +688,6 @@ func (client *Layer3Forwarding1) SetDefaultConnectionService(NewDefaultConnectio
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDefaultConnectionService:
 func (client *Layer3Forwarding1) GetDefaultConnectionService() (NewDefaultConnectionService string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -771,14 +732,48 @@ func NewWANCableLinkConfig1Clients() (clients []*WANCableLinkConfig1, errors []e
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANCableLinkConfig_1); err != nil {
 		return
 	}
-	clients = make([]*WANCableLinkConfig1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANCableLinkConfig1{genericClients[i]}
-	}
+	clients = newWANCableLinkConfig1ClientsFromGenericClients(genericClients)
 	return
 }
 
+// NewWANCableLinkConfig1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANCableLinkConfig1ClientsByURL(loc *url.URL) ([]*WANCableLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANCableLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANCableLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANCableLinkConfig1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
+//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANCableLinkConfig1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANCableLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANCableLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANCableLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANCableLinkConfig1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANCableLinkConfig1 {
+	clients := make([]*WANCableLinkConfig1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANCableLinkConfig1{genericClients[i]}
+	}
+	return clients
+}
+
 //
 // Return values:
 //
@@ -795,8 +790,7 @@ func (client *WANCableLinkConfig1) GetCableLinkConfigInfo() (NewCableLinkConfigS
 	// Response structure.
 	response := &struct {
 		NewCableLinkConfigState string
-
-		NewLinkType string
+		NewLinkType             string
 	}{}
 
 	// Perform the SOAP call.
@@ -816,11 +810,6 @@ func (client *WANCableLinkConfig1) GetCableLinkConfigInfo() (NewCableLinkConfigS
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDownstreamFrequency:
 func (client *WANCableLinkConfig1) GetDownstreamFrequency() (NewDownstreamFrequency uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -847,7 +836,6 @@ func (client *WANCableLinkConfig1) GetDownstreamFrequency() (NewDownstreamFreque
 	return
 }
 
-//
 //
 // Return values:
 //
@@ -878,11 +866,6 @@ func (client *WANCableLinkConfig1) GetDownstreamModulation() (NewDownstreamModul
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewUpstreamFrequency:
 func (client *WANCableLinkConfig1) GetUpstreamFrequency() (NewUpstreamFrequency uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -909,7 +892,6 @@ func (client *WANCableLinkConfig1) GetUpstreamFrequency() (NewUpstreamFrequency 
 	return
 }
 
-//
 //
 // Return values:
 //
@@ -940,11 +922,6 @@ func (client *WANCableLinkConfig1) GetUpstreamModulation() (NewUpstreamModulatio
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewUpstreamChannelID:
 func (client *WANCableLinkConfig1) GetUpstreamChannelID() (NewUpstreamChannelID uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -971,11 +948,6 @@ func (client *WANCableLinkConfig1) GetUpstreamChannelID() (NewUpstreamChannelID 
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewUpstreamPowerLevel:
 func (client *WANCableLinkConfig1) GetUpstreamPowerLevel() (NewUpstreamPowerLevel uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1002,11 +974,6 @@ func (client *WANCableLinkConfig1) GetUpstreamPowerLevel() (NewUpstreamPowerLeve
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewBPIEncryptionEnabled:
 func (client *WANCableLinkConfig1) GetBPIEncryptionEnabled() (NewBPIEncryptionEnabled bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1033,11 +1000,6 @@ func (client *WANCableLinkConfig1) GetBPIEncryptionEnabled() (NewBPIEncryptionEn
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewConfigFile:
 func (client *WANCableLinkConfig1) GetConfigFile() (NewConfigFile string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1064,11 +1026,6 @@ func (client *WANCableLinkConfig1) GetConfigFile() (NewConfigFile string, err er
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewTFTPServer:
 func (client *WANCableLinkConfig1) GetTFTPServer() (NewTFTPServer string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1113,18 +1070,48 @@ func NewWANCommonInterfaceConfig1Clients() (clients []*WANCommonInterfaceConfig1
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANCommonInterfaceConfig_1); err != nil {
 		return
 	}
-	clients = make([]*WANCommonInterfaceConfig1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANCommonInterfaceConfig1{genericClients[i]}
-	}
+	clients = newWANCommonInterfaceConfig1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewWANCommonInterfaceConfig1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewEnabledForInternet:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANCommonInterfaceConfig1ClientsByURL(loc *url.URL) ([]*WANCommonInterfaceConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANCommonInterfaceConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANCommonInterfaceConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANCommonInterfaceConfig1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANCommonInterfaceConfig1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANCommonInterfaceConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANCommonInterfaceConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANCommonInterfaceConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANCommonInterfaceConfig1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANCommonInterfaceConfig1 {
+	clients := make([]*WANCommonInterfaceConfig1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANCommonInterfaceConfig1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *WANCommonInterfaceConfig1) SetEnabledForInternet(NewEnabledForInternet bool) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1151,11 +1138,6 @@ func (client *WANCommonInterfaceConfig1) SetEnabledForInternet(NewEnabledForInte
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewEnabledForInternet:
 func (client *WANCommonInterfaceConfig1) GetEnabledForInternet() (NewEnabledForInternet bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1183,14 +1165,9 @@ func (client *WANCommonInterfaceConfig1) GetEnabledForInternet() (NewEnabledForI
 }
 
 //
-//
 // Return values:
 //
 // * NewWANAccessType: allowed values: DSL, POTS, Cable, Ethernet
-//
-// * NewLayer1UpstreamMaxBitRate:
-//
-// * NewLayer1DownstreamMaxBitRate:
 //
 // * NewPhysicalLinkStatus: allowed values: Up, Down
 func (client *WANCommonInterfaceConfig1) GetCommonLinkProperties() (NewWANAccessType string, NewLayer1UpstreamMaxBitRate uint32, NewLayer1DownstreamMaxBitRate uint32, NewPhysicalLinkStatus string, err error) {
@@ -1202,13 +1179,10 @@ func (client *WANCommonInterfaceConfig1) GetCommonLinkProperties() (NewWANAccess
 
 	// Response structure.
 	response := &struct {
-		NewWANAccessType string
-
-		NewLayer1UpstreamMaxBitRate string
-
+		NewWANAccessType              string
+		NewLayer1UpstreamMaxBitRate   string
 		NewLayer1DownstreamMaxBitRate string
-
-		NewPhysicalLinkStatus string
+		NewPhysicalLinkStatus         string
 	}{}
 
 	// Perform the SOAP call.
@@ -1234,11 +1208,6 @@ func (client *WANCommonInterfaceConfig1) GetCommonLinkProperties() (NewWANAccess
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewWANAccessProvider:
 func (client *WANCommonInterfaceConfig1) GetWANAccessProvider() (NewWANAccessProvider string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1265,7 +1234,6 @@ func (client *WANCommonInterfaceConfig1) GetWANAccessProvider() (NewWANAccessPro
 	return
 }
 
-//
 //
 // Return values:
 //
@@ -1296,12 +1264,7 @@ func (client *WANCommonInterfaceConfig1) GetMaximumActiveConnections() (NewMaxim
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewTotalBytesSent:
-func (client *WANCommonInterfaceConfig1) GetTotalBytesSent() (NewTotalBytesSent uint32, err error) {
+func (client *WANCommonInterfaceConfig1) GetTotalBytesSent() (NewTotalBytesSent uint64, err error) {
 	// Request structure.
 	request := interface{}(nil)
 	// BEGIN Marshal arguments into request.
@@ -1320,19 +1283,14 @@ func (client *WANCommonInterfaceConfig1) GetTotalBytesSent() (NewTotalBytesSent 
 
 	// BEGIN Unmarshal arguments from response.
 
-	if NewTotalBytesSent, err = soap.UnmarshalUi4(response.NewTotalBytesSent); err != nil {
+	if NewTotalBytesSent, err = soap.UnmarshalUi8(response.NewTotalBytesSent); err != nil {
 		return
 	}
 	// END Unmarshal arguments from response.
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewTotalBytesReceived:
-func (client *WANCommonInterfaceConfig1) GetTotalBytesReceived() (NewTotalBytesReceived uint32, err error) {
+func (client *WANCommonInterfaceConfig1) GetTotalBytesReceived() (NewTotalBytesReceived uint64, err error) {
 	// Request structure.
 	request := interface{}(nil)
 	// BEGIN Marshal arguments into request.
@@ -1351,18 +1309,13 @@ func (client *WANCommonInterfaceConfig1) GetTotalBytesReceived() (NewTotalBytesR
 
 	// BEGIN Unmarshal arguments from response.
 
-	if NewTotalBytesReceived, err = soap.UnmarshalUi4(response.NewTotalBytesReceived); err != nil {
+	if NewTotalBytesReceived, err = soap.UnmarshalUi8(response.NewTotalBytesReceived); err != nil {
 		return
 	}
 	// END Unmarshal arguments from response.
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewTotalPacketsSent:
 func (client *WANCommonInterfaceConfig1) GetTotalPacketsSent() (NewTotalPacketsSent uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1389,11 +1342,6 @@ func (client *WANCommonInterfaceConfig1) GetTotalPacketsSent() (NewTotalPacketsS
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewTotalPacketsReceived:
 func (client *WANCommonInterfaceConfig1) GetTotalPacketsReceived() (NewTotalPacketsReceived uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1420,15 +1368,6 @@ func (client *WANCommonInterfaceConfig1) GetTotalPacketsReceived() (NewTotalPack
 	return
 }
 
-// Arguments:
-//
-// * NewActiveConnectionIndex:
-//
-// Return values:
-//
-// * NewActiveConnDeviceContainer:
-//
-// * NewActiveConnectionServiceID:
 func (client *WANCommonInterfaceConfig1) GetActiveConnection(NewActiveConnectionIndex uint16) (NewActiveConnDeviceContainer string, NewActiveConnectionServiceID string, err error) {
 	// Request structure.
 	request := &struct {
@@ -1444,7 +1383,6 @@ func (client *WANCommonInterfaceConfig1) GetActiveConnection(NewActiveConnection
 	// Response structure.
 	response := &struct {
 		NewActiveConnDeviceContainer string
-
 		NewActiveConnectionServiceID string
 	}{}
 
@@ -1483,18 +1421,48 @@ func NewWANDSLLinkConfig1Clients() (clients []*WANDSLLinkConfig1, errors []error
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANDSLLinkConfig_1); err != nil {
 		return
 	}
-	clients = make([]*WANDSLLinkConfig1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANDSLLinkConfig1{genericClients[i]}
-	}
+	clients = newWANDSLLinkConfig1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewWANDSLLinkConfig1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewLinkType:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANDSLLinkConfig1ClientsByURL(loc *url.URL) ([]*WANDSLLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANDSLLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANDSLLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANDSLLinkConfig1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANDSLLinkConfig1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANDSLLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANDSLLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANDSLLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANDSLLinkConfig1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANDSLLinkConfig1 {
+	clients := make([]*WANDSLLinkConfig1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANDSLLinkConfig1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *WANDSLLinkConfig1) SetDSLLinkType(NewLinkType string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1522,10 +1490,7 @@ func (client *WANDSLLinkConfig1) SetDSLLinkType(NewLinkType string) (err error) 
 }
 
 //
-//
 // Return values:
-//
-// * NewLinkType:
 //
 // * NewLinkStatus: allowed values: Up, Down
 func (client *WANDSLLinkConfig1) GetDSLLinkInfo() (NewLinkType string, NewLinkStatus string, err error) {
@@ -1537,8 +1502,7 @@ func (client *WANDSLLinkConfig1) GetDSLLinkInfo() (NewLinkType string, NewLinkSt
 
 	// Response structure.
 	response := &struct {
-		NewLinkType string
-
+		NewLinkType   string
 		NewLinkStatus string
 	}{}
 
@@ -1559,11 +1523,6 @@ func (client *WANDSLLinkConfig1) GetDSLLinkInfo() (NewLinkType string, NewLinkSt
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewAutoConfig:
 func (client *WANDSLLinkConfig1) GetAutoConfig() (NewAutoConfig bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1590,11 +1549,6 @@ func (client *WANDSLLinkConfig1) GetAutoConfig() (NewAutoConfig bool, err error)
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewModulationType:
 func (client *WANDSLLinkConfig1) GetModulationType() (NewModulationType string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1621,11 +1575,6 @@ func (client *WANDSLLinkConfig1) GetModulationType() (NewModulationType string, 
 	return
 }
 
-// Arguments:
-//
-// * NewDestinationAddress:
-//
-//
 func (client *WANDSLLinkConfig1) SetDestinationAddress(NewDestinationAddress string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1652,11 +1601,6 @@ func (client *WANDSLLinkConfig1) SetDestinationAddress(NewDestinationAddress str
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDestinationAddress:
 func (client *WANDSLLinkConfig1) GetDestinationAddress() (NewDestinationAddress string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1683,11 +1627,6 @@ func (client *WANDSLLinkConfig1) GetDestinationAddress() (NewDestinationAddress 
 	return
 }
 
-// Arguments:
-//
-// * NewATMEncapsulation:
-//
-//
 func (client *WANDSLLinkConfig1) SetATMEncapsulation(NewATMEncapsulation string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1714,11 +1653,6 @@ func (client *WANDSLLinkConfig1) SetATMEncapsulation(NewATMEncapsulation string)
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewATMEncapsulation:
 func (client *WANDSLLinkConfig1) GetATMEncapsulation() (NewATMEncapsulation string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1745,11 +1679,6 @@ func (client *WANDSLLinkConfig1) GetATMEncapsulation() (NewATMEncapsulation stri
 	return
 }
 
-// Arguments:
-//
-// * NewFCSPreserved:
-//
-//
 func (client *WANDSLLinkConfig1) SetFCSPreserved(NewFCSPreserved bool) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1776,11 +1705,6 @@ func (client *WANDSLLinkConfig1) SetFCSPreserved(NewFCSPreserved bool) (err erro
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewFCSPreserved:
 func (client *WANDSLLinkConfig1) GetFCSPreserved() (NewFCSPreserved bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1825,14 +1749,48 @@ func NewWANEthernetLinkConfig1Clients() (clients []*WANEthernetLinkConfig1, erro
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANEthernetLinkConfig_1); err != nil {
 		return
 	}
-	clients = make([]*WANEthernetLinkConfig1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANEthernetLinkConfig1{genericClients[i]}
-	}
+	clients = newWANEthernetLinkConfig1ClientsFromGenericClients(genericClients)
 	return
 }
 
+// NewWANEthernetLinkConfig1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANEthernetLinkConfig1ClientsByURL(loc *url.URL) ([]*WANEthernetLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANEthernetLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANEthernetLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANEthernetLinkConfig1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
+//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANEthernetLinkConfig1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANEthernetLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANEthernetLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANEthernetLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANEthernetLinkConfig1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANEthernetLinkConfig1 {
+	clients := make([]*WANEthernetLinkConfig1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANEthernetLinkConfig1{genericClients[i]}
+	}
+	return clients
+}
+
 //
 // Return values:
 //
@@ -1881,18 +1839,48 @@ func NewWANIPConnection1Clients() (clients []*WANIPConnection1, errors []error, 
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANIPConnection_1); err != nil {
 		return
 	}
-	clients = make([]*WANIPConnection1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANIPConnection1{genericClients[i]}
-	}
+	clients = newWANIPConnection1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewWANIPConnection1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewConnectionType:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANIPConnection1ClientsByURL(loc *url.URL) ([]*WANIPConnection1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANIPConnection_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANIPConnection1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANIPConnection1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANIPConnection1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANIPConnection1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANIPConnection_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANIPConnection1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANIPConnection1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANIPConnection1 {
+	clients := make([]*WANIPConnection1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANIPConnection1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *WANIPConnection1) SetConnectionType(NewConnectionType string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -1920,10 +1908,7 @@ func (client *WANIPConnection1) SetConnectionType(NewConnectionType string) (err
 }
 
 //
-//
 // Return values:
-//
-// * NewConnectionType:
 //
 // * NewPossibleConnectionTypes: allowed values: Unconfigured, IP_Routed, IP_Bridged
 func (client *WANIPConnection1) GetConnectionTypeInfo() (NewConnectionType string, NewPossibleConnectionTypes string, err error) {
@@ -1935,8 +1920,7 @@ func (client *WANIPConnection1) GetConnectionTypeInfo() (NewConnectionType strin
 
 	// Response structure.
 	response := &struct {
-		NewConnectionType string
-
+		NewConnectionType          string
 		NewPossibleConnectionTypes string
 	}{}
 
@@ -1957,9 +1941,6 @@ func (client *WANIPConnection1) GetConnectionTypeInfo() (NewConnectionType strin
 	return
 }
 
-//
-//
-//
 func (client *WANIPConnection1) RequestConnection() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -1981,9 +1962,6 @@ func (client *WANIPConnection1) RequestConnection() (err error) {
 	return
 }
 
-//
-//
-//
 func (client *WANIPConnection1) RequestTermination() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2005,9 +1983,6 @@ func (client *WANIPConnection1) RequestTermination() (err error) {
 	return
 }
 
-//
-//
-//
 func (client *WANIPConnection1) ForceTermination() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2029,11 +2004,6 @@ func (client *WANIPConnection1) ForceTermination() (err error) {
 	return
 }
 
-// Arguments:
-//
-// * NewAutoDisconnectTime:
-//
-//
 func (client *WANIPConnection1) SetAutoDisconnectTime(NewAutoDisconnectTime uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -2060,11 +2030,6 @@ func (client *WANIPConnection1) SetAutoDisconnectTime(NewAutoDisconnectTime uint
 	return
 }
 
-// Arguments:
-//
-// * NewIdleDisconnectTime:
-//
-//
 func (client *WANIPConnection1) SetIdleDisconnectTime(NewIdleDisconnectTime uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -2091,11 +2056,6 @@ func (client *WANIPConnection1) SetIdleDisconnectTime(NewIdleDisconnectTime uint
 	return
 }
 
-// Arguments:
-//
-// * NewWarnDisconnectDelay:
-//
-//
 func (client *WANIPConnection1) SetWarnDisconnectDelay(NewWarnDisconnectDelay uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -2123,14 +2083,11 @@ func (client *WANIPConnection1) SetWarnDisconnectDelay(NewWarnDisconnectDelay ui
 }
 
 //
-//
 // Return values:
 //
 // * NewConnectionStatus: allowed values: Unconfigured, Connected, Disconnected
 //
 // * NewLastConnectionError: allowed values: ERROR_NONE
-//
-// * NewUptime:
 func (client *WANIPConnection1) GetStatusInfo() (NewConnectionStatus string, NewLastConnectionError string, NewUptime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2140,11 +2097,9 @@ func (client *WANIPConnection1) GetStatusInfo() (NewConnectionStatus string, New
 
 	// Response structure.
 	response := &struct {
-		NewConnectionStatus string
-
+		NewConnectionStatus    string
 		NewLastConnectionError string
-
-		NewUptime string
+		NewUptime              string
 	}{}
 
 	// Perform the SOAP call.
@@ -2167,11 +2122,6 @@ func (client *WANIPConnection1) GetStatusInfo() (NewConnectionStatus string, New
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewAutoDisconnectTime:
 func (client *WANIPConnection1) GetAutoDisconnectTime() (NewAutoDisconnectTime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2198,11 +2148,6 @@ func (client *WANIPConnection1) GetAutoDisconnectTime() (NewAutoDisconnectTime u
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewIdleDisconnectTime:
 func (client *WANIPConnection1) GetIdleDisconnectTime() (NewIdleDisconnectTime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2229,11 +2174,6 @@ func (client *WANIPConnection1) GetIdleDisconnectTime() (NewIdleDisconnectTime u
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewWarnDisconnectDelay:
 func (client *WANIPConnection1) GetWarnDisconnectDelay() (NewWarnDisconnectDelay uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2260,13 +2200,6 @@ func (client *WANIPConnection1) GetWarnDisconnectDelay() (NewWarnDisconnectDelay
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewRSIPAvailable:
-//
-// * NewNATEnabled:
 func (client *WANIPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewNATEnabled bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2277,8 +2210,7 @@ func (client *WANIPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewNA
 	// Response structure.
 	response := &struct {
 		NewRSIPAvailable string
-
-		NewNATEnabled string
+		NewNATEnabled    string
 	}{}
 
 	// Perform the SOAP call.
@@ -2298,27 +2230,10 @@ func (client *WANIPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewNA
 	return
 }
 
-// Arguments:
-//
-// * NewPortMappingIndex:
 //
 // Return values:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
 func (client *WANIPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex uint16) (NewRemoteHost string, NewExternalPort uint16, NewProtocol string, NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32, err error) {
 	// Request structure.
 	request := &struct {
@@ -2333,21 +2248,14 @@ func (client *WANIPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex u
 
 	// Response structure.
 	response := &struct {
-		NewRemoteHost string
-
-		NewExternalPort string
-
-		NewProtocol string
-
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewRemoteHost             string
+		NewExternalPort           string
+		NewProtocol               string
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 
 	// Perform the SOAP call.
@@ -2385,33 +2293,17 @@ func (client *WANIPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex u
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// Return values:
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
+
 func (client *WANIPConnection1) GetSpecificPortMappingEntry(NewRemoteHost string, NewExternalPort uint16, NewProtocol string) (NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32, err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
+		NewRemoteHost   string
 		NewExternalPort string
-
-		NewProtocol string
+		NewProtocol     string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -2428,15 +2320,11 @@ func (client *WANIPConnection1) GetSpecificPortMappingEntry(NewRemoteHost string
 
 	// Response structure.
 	response := &struct {
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 
 	// Perform the SOAP call.
@@ -2465,43 +2353,22 @@ func (client *WANIPConnection1) GetSpecificPortMappingEntry(NewRemoteHost string
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
-//
-//
+
 func (client *WANIPConnection1) AddPortMapping(NewRemoteHost string, NewExternalPort uint16, NewProtocol string, NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32) (err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
-		NewExternalPort string
-
-		NewProtocol string
-
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewRemoteHost             string
+		NewExternalPort           string
+		NewProtocol               string
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -2545,23 +2412,17 @@ func (client *WANIPConnection1) AddPortMapping(NewRemoteHost string, NewExternal
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-//
+
 func (client *WANIPConnection1) DeletePortMapping(NewRemoteHost string, NewExternalPort uint16, NewProtocol string) (err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
+		NewRemoteHost   string
 		NewExternalPort string
-
-		NewProtocol string
+		NewProtocol     string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -2590,11 +2451,6 @@ func (client *WANIPConnection1) DeletePortMapping(NewRemoteHost string, NewExter
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewExternalIPAddress:
 func (client *WANIPConnection1) GetExternalIPAddress() (NewExternalIPAddress string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2639,30 +2495,59 @@ func NewWANPOTSLinkConfig1Clients() (clients []*WANPOTSLinkConfig1, errors []err
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANPOTSLinkConfig_1); err != nil {
 		return
 	}
-	clients = make([]*WANPOTSLinkConfig1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANPOTSLinkConfig1{genericClients[i]}
-	}
+	clients = newWANPOTSLinkConfig1ClientsFromGenericClients(genericClients)
 	return
 }
 
+// NewWANPOTSLinkConfig1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
+//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANPOTSLinkConfig1ClientsByURL(loc *url.URL) ([]*WANPOTSLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANPOTSLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANPOTSLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANPOTSLinkConfig1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
+//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANPOTSLinkConfig1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANPOTSLinkConfig1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANPOTSLinkConfig_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANPOTSLinkConfig1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANPOTSLinkConfig1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANPOTSLinkConfig1 {
+	clients := make([]*WANPOTSLinkConfig1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANPOTSLinkConfig1{genericClients[i]}
+	}
+	return clients
+}
+
+//
 // Arguments:
 //
-// * NewISPPhoneNumber:
-//
-// * NewISPInfo:
-//
 // * NewLinkType: allowed values: PPP_Dialup
-//
-//
+
 func (client *WANPOTSLinkConfig1) SetISPInfo(NewISPPhoneNumber string, NewISPInfo string, NewLinkType string) (err error) {
 	// Request structure.
 	request := &struct {
 		NewISPPhoneNumber string
-
-		NewISPInfo string
-
-		NewLinkType string
+		NewISPInfo        string
+		NewLinkType       string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -2691,18 +2576,10 @@ func (client *WANPOTSLinkConfig1) SetISPInfo(NewISPPhoneNumber string, NewISPInf
 	return
 }
 
-// Arguments:
-//
-// * NewNumberOfRetries:
-//
-// * NewDelayBetweenRetries:
-//
-//
 func (client *WANPOTSLinkConfig1) SetCallRetryInfo(NewNumberOfRetries uint32, NewDelayBetweenRetries uint32) (err error) {
 	// Request structure.
 	request := &struct {
-		NewNumberOfRetries string
-
+		NewNumberOfRetries     string
 		NewDelayBetweenRetries string
 	}{}
 	// BEGIN Marshal arguments into request.
@@ -2730,12 +2607,7 @@ func (client *WANPOTSLinkConfig1) SetCallRetryInfo(NewNumberOfRetries uint32, Ne
 }
 
 //
-//
 // Return values:
-//
-// * NewISPPhoneNumber:
-//
-// * NewISPInfo:
 //
 // * NewLinkType: allowed values: PPP_Dialup
 func (client *WANPOTSLinkConfig1) GetISPInfo() (NewISPPhoneNumber string, NewISPInfo string, NewLinkType string, err error) {
@@ -2748,10 +2620,8 @@ func (client *WANPOTSLinkConfig1) GetISPInfo() (NewISPPhoneNumber string, NewISP
 	// Response structure.
 	response := &struct {
 		NewISPPhoneNumber string
-
-		NewISPInfo string
-
-		NewLinkType string
+		NewISPInfo        string
+		NewLinkType       string
 	}{}
 
 	// Perform the SOAP call.
@@ -2774,13 +2644,6 @@ func (client *WANPOTSLinkConfig1) GetISPInfo() (NewISPPhoneNumber string, NewISP
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewNumberOfRetries:
-//
-// * NewDelayBetweenRetries:
 func (client *WANPOTSLinkConfig1) GetCallRetryInfo() (NewNumberOfRetries uint32, NewDelayBetweenRetries uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2790,8 +2653,7 @@ func (client *WANPOTSLinkConfig1) GetCallRetryInfo() (NewNumberOfRetries uint32,
 
 	// Response structure.
 	response := &struct {
-		NewNumberOfRetries string
-
+		NewNumberOfRetries     string
 		NewDelayBetweenRetries string
 	}{}
 
@@ -2812,11 +2674,6 @@ func (client *WANPOTSLinkConfig1) GetCallRetryInfo() (NewNumberOfRetries uint32,
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewFclass:
 func (client *WANPOTSLinkConfig1) GetFclass() (NewFclass string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2843,11 +2700,6 @@ func (client *WANPOTSLinkConfig1) GetFclass() (NewFclass string, err error) {
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDataModulationSupported:
 func (client *WANPOTSLinkConfig1) GetDataModulationSupported() (NewDataModulationSupported string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2874,11 +2726,6 @@ func (client *WANPOTSLinkConfig1) GetDataModulationSupported() (NewDataModulatio
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDataProtocol:
 func (client *WANPOTSLinkConfig1) GetDataProtocol() (NewDataProtocol string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2905,11 +2752,6 @@ func (client *WANPOTSLinkConfig1) GetDataProtocol() (NewDataProtocol string, err
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewDataCompression:
 func (client *WANPOTSLinkConfig1) GetDataCompression() (NewDataCompression string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2936,11 +2778,6 @@ func (client *WANPOTSLinkConfig1) GetDataCompression() (NewDataCompression strin
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewPlusVTRCommandSupported:
 func (client *WANPOTSLinkConfig1) GetPlusVTRCommandSupported() (NewPlusVTRCommandSupported bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -2985,18 +2822,48 @@ func NewWANPPPConnection1Clients() (clients []*WANPPPConnection1, errors []error
 	if genericClients, errors, err = goupnp.NewServiceClients(URN_WANPPPConnection_1); err != nil {
 		return
 	}
-	clients = make([]*WANPPPConnection1, len(genericClients))
-	for i := range genericClients {
-		clients[i] = &WANPPPConnection1{genericClients[i]}
-	}
+	clients = newWANPPPConnection1ClientsFromGenericClients(genericClients)
 	return
 }
 
-// Arguments:
+// NewWANPPPConnection1ClientsByURL discovers instances of the service at the given
+// URL, and returns clients to any that are found. An error is returned if
+// there was an error probing the service.
 //
-// * NewConnectionType:
+// This is a typical entry calling point into this package when reusing an
+// previously discovered service URL.
+func NewWANPPPConnection1ClientsByURL(loc *url.URL) ([]*WANPPPConnection1, error) {
+	genericClients, err := goupnp.NewServiceClientsByURL(loc, URN_WANPPPConnection_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANPPPConnection1ClientsFromGenericClients(genericClients), nil
+}
+
+// NewWANPPPConnection1ClientsFromRootDevice discovers instances of the service in
+// a given root device, and returns clients to any that are found. An error is
+// returned if there was not at least one instance of the service within the
+// device. The location parameter is simply assigned to the Location attribute
+// of the wrapped ServiceClient(s).
 //
-//
+// This is a typical entry calling point into this package when reusing an
+// previously discovered root device.
+func NewWANPPPConnection1ClientsFromRootDevice(rootDevice *goupnp.RootDevice, loc *url.URL) ([]*WANPPPConnection1, error) {
+	genericClients, err := goupnp.NewServiceClientsFromRootDevice(rootDevice, loc, URN_WANPPPConnection_1)
+	if err != nil {
+		return nil, err
+	}
+	return newWANPPPConnection1ClientsFromGenericClients(genericClients), nil
+}
+
+func newWANPPPConnection1ClientsFromGenericClients(genericClients []goupnp.ServiceClient) []*WANPPPConnection1 {
+	clients := make([]*WANPPPConnection1, len(genericClients))
+	for i := range genericClients {
+		clients[i] = &WANPPPConnection1{genericClients[i]}
+	}
+	return clients
+}
+
 func (client *WANPPPConnection1) SetConnectionType(NewConnectionType string) (err error) {
 	// Request structure.
 	request := &struct {
@@ -3024,10 +2891,7 @@ func (client *WANPPPConnection1) SetConnectionType(NewConnectionType string) (er
 }
 
 //
-//
 // Return values:
-//
-// * NewConnectionType:
 //
 // * NewPossibleConnectionTypes: allowed values: Unconfigured, IP_Routed, DHCP_Spoofed, PPPoE_Bridged, PPTP_Relay, L2TP_Relay, PPPoE_Relay
 func (client *WANPPPConnection1) GetConnectionTypeInfo() (NewConnectionType string, NewPossibleConnectionTypes string, err error) {
@@ -3039,8 +2903,7 @@ func (client *WANPPPConnection1) GetConnectionTypeInfo() (NewConnectionType stri
 
 	// Response structure.
 	response := &struct {
-		NewConnectionType string
-
+		NewConnectionType          string
 		NewPossibleConnectionTypes string
 	}{}
 
@@ -3061,18 +2924,10 @@ func (client *WANPPPConnection1) GetConnectionTypeInfo() (NewConnectionType stri
 	return
 }
 
-// Arguments:
-//
-// * NewUserName:
-//
-// * NewPassword:
-//
-//
 func (client *WANPPPConnection1) ConfigureConnection(NewUserName string, NewPassword string) (err error) {
 	// Request structure.
 	request := &struct {
 		NewUserName string
-
 		NewPassword string
 	}{}
 	// BEGIN Marshal arguments into request.
@@ -3099,9 +2954,6 @@ func (client *WANPPPConnection1) ConfigureConnection(NewUserName string, NewPass
 	return
 }
 
-//
-//
-//
 func (client *WANPPPConnection1) RequestConnection() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3123,9 +2975,6 @@ func (client *WANPPPConnection1) RequestConnection() (err error) {
 	return
 }
 
-//
-//
-//
 func (client *WANPPPConnection1) RequestTermination() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3147,9 +2996,6 @@ func (client *WANPPPConnection1) RequestTermination() (err error) {
 	return
 }
 
-//
-//
-//
 func (client *WANPPPConnection1) ForceTermination() (err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3171,11 +3017,6 @@ func (client *WANPPPConnection1) ForceTermination() (err error) {
 	return
 }
 
-// Arguments:
-//
-// * NewAutoDisconnectTime:
-//
-//
 func (client *WANPPPConnection1) SetAutoDisconnectTime(NewAutoDisconnectTime uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -3202,11 +3043,6 @@ func (client *WANPPPConnection1) SetAutoDisconnectTime(NewAutoDisconnectTime uin
 	return
 }
 
-// Arguments:
-//
-// * NewIdleDisconnectTime:
-//
-//
 func (client *WANPPPConnection1) SetIdleDisconnectTime(NewIdleDisconnectTime uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -3233,11 +3069,6 @@ func (client *WANPPPConnection1) SetIdleDisconnectTime(NewIdleDisconnectTime uin
 	return
 }
 
-// Arguments:
-//
-// * NewWarnDisconnectDelay:
-//
-//
 func (client *WANPPPConnection1) SetWarnDisconnectDelay(NewWarnDisconnectDelay uint32) (err error) {
 	// Request structure.
 	request := &struct {
@@ -3265,14 +3096,11 @@ func (client *WANPPPConnection1) SetWarnDisconnectDelay(NewWarnDisconnectDelay u
 }
 
 //
-//
 // Return values:
 //
 // * NewConnectionStatus: allowed values: Unconfigured, Connected, Disconnected
 //
 // * NewLastConnectionError: allowed values: ERROR_NONE
-//
-// * NewUptime:
 func (client *WANPPPConnection1) GetStatusInfo() (NewConnectionStatus string, NewLastConnectionError string, NewUptime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3282,11 +3110,9 @@ func (client *WANPPPConnection1) GetStatusInfo() (NewConnectionStatus string, Ne
 
 	// Response structure.
 	response := &struct {
-		NewConnectionStatus string
-
+		NewConnectionStatus    string
 		NewLastConnectionError string
-
-		NewUptime string
+		NewUptime              string
 	}{}
 
 	// Perform the SOAP call.
@@ -3309,13 +3135,6 @@ func (client *WANPPPConnection1) GetStatusInfo() (NewConnectionStatus string, Ne
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewUpstreamMaxBitRate:
-//
-// * NewDownstreamMaxBitRate:
 func (client *WANPPPConnection1) GetLinkLayerMaxBitRates() (NewUpstreamMaxBitRate uint32, NewDownstreamMaxBitRate uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3325,8 +3144,7 @@ func (client *WANPPPConnection1) GetLinkLayerMaxBitRates() (NewUpstreamMaxBitRat
 
 	// Response structure.
 	response := &struct {
-		NewUpstreamMaxBitRate string
-
+		NewUpstreamMaxBitRate   string
 		NewDownstreamMaxBitRate string
 	}{}
 
@@ -3347,11 +3165,6 @@ func (client *WANPPPConnection1) GetLinkLayerMaxBitRates() (NewUpstreamMaxBitRat
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewPPPEncryptionProtocol:
 func (client *WANPPPConnection1) GetPPPEncryptionProtocol() (NewPPPEncryptionProtocol string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3378,11 +3191,6 @@ func (client *WANPPPConnection1) GetPPPEncryptionProtocol() (NewPPPEncryptionPro
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewPPPCompressionProtocol:
 func (client *WANPPPConnection1) GetPPPCompressionProtocol() (NewPPPCompressionProtocol string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3409,11 +3217,6 @@ func (client *WANPPPConnection1) GetPPPCompressionProtocol() (NewPPPCompressionP
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewPPPAuthenticationProtocol:
 func (client *WANPPPConnection1) GetPPPAuthenticationProtocol() (NewPPPAuthenticationProtocol string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3440,11 +3243,6 @@ func (client *WANPPPConnection1) GetPPPAuthenticationProtocol() (NewPPPAuthentic
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewUserName:
 func (client *WANPPPConnection1) GetUserName() (NewUserName string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3471,11 +3269,6 @@ func (client *WANPPPConnection1) GetUserName() (NewUserName string, err error) {
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewPassword:
 func (client *WANPPPConnection1) GetPassword() (NewPassword string, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3502,11 +3295,6 @@ func (client *WANPPPConnection1) GetPassword() (NewPassword string, err error) {
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewAutoDisconnectTime:
 func (client *WANPPPConnection1) GetAutoDisconnectTime() (NewAutoDisconnectTime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3533,11 +3321,6 @@ func (client *WANPPPConnection1) GetAutoDisconnectTime() (NewAutoDisconnectTime 
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewIdleDisconnectTime:
 func (client *WANPPPConnection1) GetIdleDisconnectTime() (NewIdleDisconnectTime uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3564,11 +3347,6 @@ func (client *WANPPPConnection1) GetIdleDisconnectTime() (NewIdleDisconnectTime 
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewWarnDisconnectDelay:
 func (client *WANPPPConnection1) GetWarnDisconnectDelay() (NewWarnDisconnectDelay uint32, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3595,13 +3373,6 @@ func (client *WANPPPConnection1) GetWarnDisconnectDelay() (NewWarnDisconnectDela
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewRSIPAvailable:
-//
-// * NewNATEnabled:
 func (client *WANPPPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewNATEnabled bool, err error) {
 	// Request structure.
 	request := interface{}(nil)
@@ -3612,8 +3383,7 @@ func (client *WANPPPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewN
 	// Response structure.
 	response := &struct {
 		NewRSIPAvailable string
-
-		NewNATEnabled string
+		NewNATEnabled    string
 	}{}
 
 	// Perform the SOAP call.
@@ -3633,27 +3403,10 @@ func (client *WANPPPConnection1) GetNATRSIPStatus() (NewRSIPAvailable bool, NewN
 	return
 }
 
-// Arguments:
-//
-// * NewPortMappingIndex:
 //
 // Return values:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
 func (client *WANPPPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex uint16) (NewRemoteHost string, NewExternalPort uint16, NewProtocol string, NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32, err error) {
 	// Request structure.
 	request := &struct {
@@ -3668,21 +3421,14 @@ func (client *WANPPPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex 
 
 	// Response structure.
 	response := &struct {
-		NewRemoteHost string
-
-		NewExternalPort string
-
-		NewProtocol string
-
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewRemoteHost             string
+		NewExternalPort           string
+		NewProtocol               string
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 
 	// Perform the SOAP call.
@@ -3720,33 +3466,17 @@ func (client *WANPPPConnection1) GetGenericPortMappingEntry(NewPortMappingIndex 
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// Return values:
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
+
 func (client *WANPPPConnection1) GetSpecificPortMappingEntry(NewRemoteHost string, NewExternalPort uint16, NewProtocol string) (NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32, err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
+		NewRemoteHost   string
 		NewExternalPort string
-
-		NewProtocol string
+		NewProtocol     string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -3763,15 +3493,11 @@ func (client *WANPPPConnection1) GetSpecificPortMappingEntry(NewRemoteHost strin
 
 	// Response structure.
 	response := &struct {
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 
 	// Perform the SOAP call.
@@ -3800,43 +3526,22 @@ func (client *WANPPPConnection1) GetSpecificPortMappingEntry(NewRemoteHost strin
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-// * NewInternalPort:
-//
-// * NewInternalClient:
-//
-// * NewEnabled:
-//
-// * NewPortMappingDescription:
-//
-// * NewLeaseDuration:
-//
-//
+
 func (client *WANPPPConnection1) AddPortMapping(NewRemoteHost string, NewExternalPort uint16, NewProtocol string, NewInternalPort uint16, NewInternalClient string, NewEnabled bool, NewPortMappingDescription string, NewLeaseDuration uint32) (err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
-		NewExternalPort string
-
-		NewProtocol string
-
-		NewInternalPort string
-
-		NewInternalClient string
-
-		NewEnabled string
-
+		NewRemoteHost             string
+		NewExternalPort           string
+		NewProtocol               string
+		NewInternalPort           string
+		NewInternalClient         string
+		NewEnabled                string
 		NewPortMappingDescription string
-
-		NewLeaseDuration string
+		NewLeaseDuration          string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -3880,23 +3585,17 @@ func (client *WANPPPConnection1) AddPortMapping(NewRemoteHost string, NewExterna
 	return
 }
 
+//
 // Arguments:
 //
-// * NewRemoteHost:
-//
-// * NewExternalPort:
-//
 // * NewProtocol: allowed values: TCP, UDP
-//
-//
+
 func (client *WANPPPConnection1) DeletePortMapping(NewRemoteHost string, NewExternalPort uint16, NewProtocol string) (err error) {
 	// Request structure.
 	request := &struct {
-		NewRemoteHost string
-
+		NewRemoteHost   string
 		NewExternalPort string
-
-		NewProtocol string
+		NewProtocol     string
 	}{}
 	// BEGIN Marshal arguments into request.
 
@@ -3925,11 +3624,6 @@ func (client *WANPPPConnection1) DeletePortMapping(NewRemoteHost string, NewExte
 	return
 }
 
-//
-//
-// Return values:
-//
-// * NewExternalIPAddress:
 func (client *WANPPPConnection1) GetExternalIPAddress() (NewExternalIPAddress string, err error) {
 	// Request structure.
 	request := interface{}(nil)

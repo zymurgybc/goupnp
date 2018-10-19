@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -44,6 +45,15 @@ func MarshalUi4(v uint32) (string, error) {
 func UnmarshalUi4(s string) (uint32, error) {
 	v, err := strconv.ParseUint(s, 10, 32)
 	return uint32(v), err
+}
+
+func MarshalUi8(v uint64) (string, error) {
+	return strconv.FormatUint(v, 10), nil
+}
+
+func UnmarshalUi8(s string) (uint64, error) {
+	v, err := strconv.ParseUint(s, 10, 64)
+	return uint64(v), err
 }
 
 func MarshalI1(v int8) (string, error) {
@@ -324,7 +334,7 @@ func UnmarshalTimeOfDay(s string) (TimeOfDay, error) {
 	if err != nil {
 		return TimeOfDay{}, err
 	} else if t.HasOffset {
-		return TimeOfDay{}, fmt.Errorf("soap time: value %q contains unexpected timezone")
+		return TimeOfDay{}, fmt.Errorf("soap time: value %q contains unexpected timezone", s)
 	}
 	return t, nil
 }
@@ -505,4 +515,14 @@ func MarshalBinHex(v []byte) (string, error) {
 // UnmarshalBinHex unmarshals []byte from the SOAP "bin.hex" type.
 func UnmarshalBinHex(s string) ([]byte, error) {
 	return hex.DecodeString(s)
+}
+
+// MarshalURI marshals *url.URL to SOAP "uri" type.
+func MarshalURI(v *url.URL) (string, error) {
+	return v.String(), nil
+}
+
+// UnmarshalURI unmarshals *url.URL from the SOAP "uri" type.
+func UnmarshalURI(s string) (*url.URL, error) {
+	return url.Parse(s)
 }
